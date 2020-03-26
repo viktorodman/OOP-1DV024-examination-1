@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
+
 
 namespace DescriptiveStatistics
 {
@@ -9,14 +10,18 @@ namespace DescriptiveStatistics
     {
         static void Main(string[] args)
         {
+            
             try
             {
                 int[] numbers = GetJsonNumbers(args[0]);
 
-                foreach (var item in numbers)
+               /*  foreach (var item in numbers)
                 {
                 System.Console.WriteLine(item);
-                }
+                } */
+                dynamic max = Statistics.DescriptiveStatistics(numbers);
+
+                System.Console.WriteLine(max);
             }
             catch (System.Exception)
             {
