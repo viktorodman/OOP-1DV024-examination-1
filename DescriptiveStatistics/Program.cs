@@ -9,19 +9,24 @@ namespace DescriptiveStatistics
     {
         static void Main(string[] args)
         {
-            
-
-            /* string st = File.ReadAllText(args[0]);
-
-            System.Console.WriteLine(st);
-
-            string json = JsonConverter(JToken.Parse(args[0])); */
-
-            using (StreamReader reader = File.OpenText(@args[0]))
+            try
             {
-                JObject o = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
-                System.Console.WriteLine(o);
+                int[] numbers = GetJsonNumbers(args[0]);
+
+                foreach (var item in numbers)
+                {
+                System.Console.WriteLine(item);
+                }
             }
+            catch (System.Exception)
+            {
+                
+                System.Console.WriteLine("AAAAH");
+            }
+        }
+        private static int[] GetJsonNumbers(string filePath)
+        {
+            return JsonConvert.DeserializeObject<int[]>(File.ReadAllText(filePath));
         }
     }
 }
