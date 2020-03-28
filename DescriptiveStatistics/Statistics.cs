@@ -5,16 +5,16 @@ namespace DescriptiveStatistics
 {
     static class Statistics
     {
-        public static int[] DescriptiveStatistics(int[] source)
+        public static dynamic DescriptiveStatistics(int[] source)
         {
-            /* return new { 
+            return new { 
                 max = Maximum(source),
                 mean = Mean(source),
                 median = Median(source),
-                min = Minimum(source)
-                }; */
-
-                return Mode(source);
+                min = Minimum(source),
+                mode = Mode(source),
+                range = Range(source)
+                };
         }
 
        
@@ -61,15 +61,13 @@ namespace DescriptiveStatistics
                 }	
 		    }
 
-
-
             return uniqueNumbers.Where((u,i) => numberCount[i] == numberCount.Max()).ToArray();
-        }/* 
+        }
         private static int Range (int[] source)
         {
-
+            return (Maximum(source) - Minimum(source));
         }
-        private static double StandardDeviation (int[] source)
+       /*  private static double StandardDeviation (int[] source)
         {
 
         } */
