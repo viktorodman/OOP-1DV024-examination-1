@@ -15,13 +15,10 @@ namespace DescriptiveStatistics
             {
                 int[] numbers = GetJsonNumbers(args[0]);
 
-               /*  foreach (var item in numbers)
-                {
-                System.Console.WriteLine(item);
-                } */
-                dynamic max = Statistics.DescriptiveStatistics(numbers);
+               
+                dynamic result = Statistics.DescriptiveStatistics(numbers);
 
-                System.Console.WriteLine(max);
+                StatisticsView.ShowResults(result);
             }
             catch (System.Exception)
             {
