@@ -31,7 +31,8 @@ namespace DescriptiveStatistics
         }
         private static int[] GetJsonNumbers(string filePath)
         {
-            return JsonConvert.DeserializeObject<int[]>(File.ReadAllText(filePath));
+            string readText = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<int[]>(readText);
         }
     }
 }

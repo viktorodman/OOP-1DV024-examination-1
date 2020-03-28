@@ -13,7 +13,8 @@ namespace DescriptiveStatistics
                 median = Median(source),
                 min = Minimum(source),
                 mode = Mode(source),
-                range = Range(source)
+                range = Range(source),
+                standardDeviation = StandardDeviation(source)
                 };
         }
 
@@ -67,13 +68,22 @@ namespace DescriptiveStatistics
         {
             return (Maximum(source) - Minimum(source));
         }
-       /*  private static double StandardDeviation (int[] source)
+        private static double StandardDeviation (int[] source)
         {
+            double[] toDoubleArray = source.Select(num => (double)num).ToArray();
 
-        } */
+            double numbersMean = Mean(source);
 
-        
+            double[] numbersRange = toDoubleArray.Select(number => 
+            ((new double[] {number, numbersMean}).Max()) - ((new double[] {number, numbersMean}).Min()))
+            .ToArray();
 
-        
+            double[] squaredNumbers = numbersRange.Select(numRange => Math.Pow(numRange, 2)).ToArray();
+
+            double meanOfSquaredNumbers = squaredNumbers.Average();
+
+            return Math.Sqrt(meanOfSquaredNumbers);
+
+        }
     }
 }
