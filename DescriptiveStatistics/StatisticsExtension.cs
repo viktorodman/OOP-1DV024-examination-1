@@ -6,12 +6,28 @@ namespace CustomExtensions
     public static class StatisticsExtension
     {
 
-        public static int Maximum (this int[] source) => source.Max();
-        public static double Maximum (this double[] source) => source.Max();
-
+        /// <summary>
+        /// Takes an array of integers and returns the
+        /// mean of the array.
+        /// </summary>
+        /// <param name="source">An Array of integers</param>
+        /// <returns>The mean of the passed array.</returns>
         public static double Mean (this int[] source) => source.Average();
+
+        /// <summary>
+        /// Takes an array of doubles and returns the
+        /// mean of the array.
+        /// </summary>
+        /// <param name="source">An Array of doubles</param>
+        /// <returns>The mean of the passed array.</returns>
         public static double Mean (this double[] source) => source.Average();
 
+         /// <summary>
+        /// Takes an array of integers and returns the
+        /// median of the array.
+        /// </summary>
+        /// <param name="source">An Array of integers</param>
+        /// <returns>The median of the passed array.</returns>
         public static double Median (this int[] source)
         {
             int arrayLength = source.Length;
@@ -28,9 +44,13 @@ namespace CustomExtensions
             return median;
         }
 
-        public static int Minimum (this int[] source) => source.Min();
-        public static double Minimum (this double[] source) => source.Min();
 
+        /// <summary>
+        /// Takes an array of integers and returns the
+        /// mode of the array
+        /// </summary>
+        /// <param name="source">An array of integers</param>
+        /// <returns>The mode of the passed array</returns>
         public static int[] Mode (this int[] source)
         {
             int[] sortedNumbers = source.OrderBy(num => num).ToArray();
@@ -49,14 +69,31 @@ namespace CustomExtensions
                 }	
 		    }
 
-            return uniqueNumbers.Where((u,i) => numberCount[i] == Maximum(numberCount)).ToArray();
+            return uniqueNumbers.Where((u,i) => numberCount[i] == numberCount.Max()).ToArray();
         }
 
-        public static int Range (this int[] source) => (Maximum(source) - Minimum(source));
+         /// <summary>
+        /// Takes an array of integers and returns the
+        /// range of the passed array.
+        /// </summary>
+        /// <param name="source">An array of integers</param>
+        /// <returns>The range of the passed array</returns>
+        public static int Range (this int[] source) => (source.Max() - source.Min());
         
-        public static double Range (this double[] source) => (Maximum(source) - Minimum(source));
+        /// <summary>
+        /// Takes an array of doubles and returns the
+        /// range of the passed array.
+        /// </summary>
+        /// <param name="source">An array of doubles</param>
+        /// <returns>The range of the passed array</returns>
+        public static double Range (this double[] source) => (source.Max()) - (source.Min());
         
-
+        /// <summary>
+        /// Takes an array of integers and returns the
+        /// standard deviation of the passed array
+        /// </summary>
+        /// <param name="source">An array of integers</param>
+        /// <returns>The standard deviation of the passed array</returns>
         public static double StandardDeviation (this int[] source)
         {
             double[] toDoubleArray = source.Select(num => (double)num).ToArray();
@@ -69,5 +106,6 @@ namespace CustomExtensions
 
             return Math.Sqrt(Mean(squaredNumbers));
         }
+
     }
 }

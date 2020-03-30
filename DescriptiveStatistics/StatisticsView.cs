@@ -1,18 +1,17 @@
 using System;
 using System.Linq;
+using System.Reflection;
+using CustomExtensions;
 
 namespace DescriptiveStatistics
 {
     public static class StatisticsView
     {
-        public static void ShowResults(dynamic result)
+        public static void ShowResults(object result)
         {
-        var results = (Object)result;
+        PropertyInfo[] props = result.GetType().GetProperties();
 
-        var type = results.GetType();
-		var props = type.GetProperties();
-		
-		var values = props.Select(x => x.GetValue(results, null)).ToArray();
+		var values = props.Select(x => x.GetValue(result, null)).ToArray();
 		var keys = props.Select(y => y.Name).ToArray();
 		
 		string str = "";
@@ -37,7 +36,6 @@ namespace DescriptiveStatistics
             Console.WriteLine(str);
 		}	
 
-        /* System.Console.WriteLine(test2); */
         }
 
         public static string NumbersToString(int[] numbers)
