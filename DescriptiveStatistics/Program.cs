@@ -22,21 +22,26 @@ namespace DescriptiveStatistics
             {
                 int[] numbers = GetJsonNumbers(args[0]);
 
-               
                 dynamic result = Statistics.DescriptiveStatistics(numbers);
-
+                
                 StatisticsView.ShowResults(result);
+               
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 
-                System.Console.WriteLine("AAAAH");
+                System.Console.WriteLine(e);
             }
         }
+        /// <summary>
+        /// Reads a json file and return an integer array with its content
+        /// </summary>
+        /// <param name="filePath">Path to json file</param>
+        /// <returns></returns>
         private static int[] GetJsonNumbers(string filePath)
         {
-            string readText = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<int[]>(readText);
+            string textInFile = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<int[]>(textInFile);
         }
     }
 }

@@ -1,12 +1,18 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using CustomExtensions;
 
 namespace DescriptiveStatistics
 {
+    /// <summary>
+    /// Represents the presentation of some statistics
+    /// </summary>
     public static class StatisticsView
     {
+        /// <summary>
+        /// Displays the results of the passed object
+        /// </summary>
+        /// <param name="result">An object with statistics</param>
         public static void ShowResults(object result)
         {
         PropertyInfo[] props = result.GetType().GetProperties();
@@ -38,9 +44,14 @@ namespace DescriptiveStatistics
 
         }
 
+        /// <summary>
+        /// Creates a string from an array of integers.
+        /// </summary>
+        /// <param name="numbers">An array of integers</param>
+        /// <returns>A string representing the passed array</returns>
         public static string NumbersToString(int[] numbers)
         {
-            return String.Join(",", numbers.Select(n => n.ToString()).ToArray());
+            return String.Join(", ", numbers.Select(n => n.ToString()).ToArray());
         }
     }
 }
